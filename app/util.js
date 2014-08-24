@@ -35,6 +35,11 @@ module.exports = {
   waitForCode: function (twiml) {
     twiml.gather({ numDigits: 1, timeout: 3 });
     return twiml;
+  },
+
+  sendSms: function(twiml, message) {
+    twiml.sms(message);
+    return twiml;
   }
 
 };

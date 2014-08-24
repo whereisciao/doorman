@@ -7,6 +7,16 @@ module.exports = function (req, res) {
 
   if (twilio.validateExpressRequest(req, config.twilioAuthToken)) {
 
+    // Expected Call. Letting them in.
+    if (global.doorTimeout > Date.now()) {
+      console.log ("Expected Call. Letting guest in");
+
+      var url = req.protocol + "://" + req.get('host') +
+        '/tones/' + config.openKey + '.wav';
+      console.log(url);
+      twiml = util.playTone(twiml, url);
+    }
+
     if (config.introduction) {
       console.log ("[Picks up Call] Hello");
 

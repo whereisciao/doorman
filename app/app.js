@@ -8,6 +8,7 @@ var http = require('http'),
     index = require('./index'),
     call = require('./call'),
     selection = require('./selection'),
+    sms = require('./sms'),
     // Express
     express = require('express'),
     app = express();
@@ -32,6 +33,7 @@ app.use(app.router);
 app.get('/', index)
 app.get('/call', call);
 app.post('/call', selection);
+app.post('/sms', sms);
 
 // We export 'loadConfig' and 'server' for ease of tesing.
 exports.loadConfig = function (path) {
