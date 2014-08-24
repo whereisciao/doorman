@@ -4,6 +4,7 @@ var twilio = require('twilio'),
 module.exports = function (req, res) {
   var twiml = new twilio.TwimlResponse(),
       selectedDigits = req.body.Digits,
+      redirected = false,
       config = req.config;
 
   if (twilio.validateExpressRequest(req, config.twilioAuthToken)) {
@@ -35,11 +36,14 @@ module.exports = function (req, res) {
 
     // No valid choice was made.
     else {
+      redirected = true;
       res.redirect('/call')
     }
 
-    res.type('text/xml');
-    res.send(twiml.toString());
+    if (redirected == false){
+      res.type('text/xml');
+      res.send(twiml.toString());
+    }
 
   } else {
     res.send();
