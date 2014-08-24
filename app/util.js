@@ -3,7 +3,9 @@ module.exports = {
   announceChoices: function (twiml, choices) {
     twiml.gather({ numDigits: 1 }, function () {
       for (var key in choices) {
-        this.say(choices[key].message);
+        this.say(choices[key].message, {
+          voice:'woman'
+        });
       }
     });
     return twiml;
@@ -21,7 +23,9 @@ module.exports = {
   securityPrompt: function (twiml, prompt) {
     twiml.gather({ numDigits: 4 }, function () {
       if (prompt) {
-        this.say(prompt);
+        this.say(prompt, {
+          voice:'woman'
+        });
       }
     });
     return twiml;
