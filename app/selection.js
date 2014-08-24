@@ -20,7 +20,7 @@ module.exports = function (req, res) {
       console.log ("[Action] Security Code Correct. Letting them in.");
 
       var url = req.protocol + "://" + req.get('host') +
-        '/public/tones/' + config.openKey + '.wav';
+        '/tones/' + config.openKey + '.wav';
       twiml = util.playTone(twiml, url);
     }
 
